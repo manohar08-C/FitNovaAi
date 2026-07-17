@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+    overflow-x: hidden;
+}
+
+
+.gradient-text {
+    background: linear-gradient(90deg, #00c6ff, #0072ff, #00c6ff);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    backdrop-filter: blur(10px);
+    background: rgba(15, 23, 42, 0.7);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 198, 255, 0.4);
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 100px;
+    min-height: 70vh;
+}
+
+.hero-text {
+    max-width: 720px;
+}
+
+.hero-text h1 {
+    font-size: 72px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+
+.hero-text p {
+    font-size: 20px;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+
+.glow-circle {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, #00c6ff, transparent 70%);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+/* FEATURES */
+.features {
+    padding: 60px 80px;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    padding: 40px;
+    border-radius: 15px;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 198, 255, 0.2);
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: #94a3b8;
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    padding: 70px 50px;
+    background: linear-gradient(90deg, #0072ff, #00c6ff);
+}
+
+.cta h2 {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #0f172a;
+    color: #94a3b8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-animation {
+        margin-top: 50px;
+    }
+}
+
+.how-it-works {
+    padding: 60px 80px;
+    text-align: center;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.step {
+    background: rgba(30,41,59,0.6);
+    padding: 30px;
+    border-radius: 15px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.step span {
+    font-size: 28px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.step:hover {
+    transform: translateY(-8px);
+}
+
+.preview {
+    text-align: center;
+    padding: 60px 80px;
+}
+
+.preview-box img {
+    width: 80%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,198,255,0.2);
+    margin-top: 30px;
+}
+
+
+.testimonials {
+    padding: 60px 80px;
+    text-align: center;
+}
+
+.testimonial-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.testimonial {
+    background: rgba(30,41,59,0.6);
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+}
+
+

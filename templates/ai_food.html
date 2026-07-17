@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="main-layout">
+
+<div class="sidebar">
+    <h2 class="logo">FitNovaAI </h2>
+
+    <a href="/dashboard" class="menu-btn">Dashboard</a>
+    <a href="/profile" class="menu-btn">Profile</a>
+    <a href="/ai_workout" class="menu-btn">AI Workout</a>
+    <a href="/nutrition" class="menu-btn">Nutrition</a>
+    <a href="/ai_food" class="menu-btn {% if request.path == '/ai_food' %}active{% endif %}">AI Food Detection</a>
+    <a href="/ai_coach" class="menu-btn">AI Coach</a>
+    <a href="/ai_planner" class="menu-btn">AI Planner</a>
+    <a href="/logout" class="menu-btn logout">Logout</a>
+
+    <button onclick="toggleTheme()" class="theme-btn">🌗 Toggle Theme</button>
+</div>
+
+
+    <div class="content">
+        <h1>AI Food Detection 🍕</h1>
+        <p>Upload your meal image and let AI calculate calories</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="food_image" required>
+            <button type="submit">Detect Food</button>
+            <input type="number" name="quantity" placeholder="Enter grams (e.g. 100)" required>
+        </form>
+
+    </div>
+
+{% if result %}
+<div class="result-card">
+    <img src="{{ url_for('static', filename=result.image) }}" width="200">
+
+
+    <h3>{{ result.food }}</h3>
+
+    <div class="macro-box">
+        <p><strong>Calories:</strong> {{ result.calories }} kcal</p>
+        <p><strong>Protein:</strong> {{ result.protein }} g</p>
+        <p><strong>Carbs:</strong> {{ result.carbs }} g</p>
+        <p><strong>Fats:</strong> {{ result.fats }} g</p>
+        <p><strong>Confidence:</strong> {{ result.confidence }}%</p>
+    </div>
+
+    <form action="{{ url_for('ai.add_meal_from_ai') }}" method="POST">
+        <input type="hidden" name="food" value="{{ result.food }}">
+        <input type="hidden" name="calories" value="{{ result.calories }}">
+        <input type="hidden" name="protein" value="{{ result.protein }}">
+        <input type="hidden" name="carbs" value="{{ result.carbs }}">
+        <input type="hidden" name="fats" value="{{ result.fats }}">
+        <button type="submit" class="btn-primary">
+            Add to Today’s Meal 🍽
+        </button>
+    </form>
+</div>
+{% endif %}
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="main-layout">
+
+<div class="sidebar">
+    <h2 class="logo">FitNovaAI </h2>
+
+    <a href="/dashboard" class="menu-btn">Dashboard</a>
+    <a href="/profile" class="menu-btn">Profile</a>
+    <a href="/ai_workout" class="menu-btn">AI Workout</a>
+    <a href="/nutrition" class="menu-btn">Nutrition</a>
+    <a href="/ai_food" class="menu-btn">AI Food Detection</a>
+    <a href="/ai_coach" class="menu-btn">AI Coach</a>
+    <a href="/ai_planner" class="menu-btn {% if request.path == '/ai_planner' %}active{% endif %}">AI Planner</a>
+    <a href="/logout" class="menu-btn logout">Logout</a>
+
+    <button onclick="toggleTheme()" class="theme-btn">🌗 Toggle Theme</button>
+</div>
+
+
+    <div class="content">
+        <h1>AI Workout & Diet Planner 🧠</h1>
+
+        <button onclick="generatePlan()">Generate Today's Plan</button>
+
+        <div id="planOutput" style="margin-top:20px; white-space:pre-line;"></div>
+
+    </div>
+</div>
+
+<script>
+function generatePlan() {
+    fetch("/generate_plan", {
+        method: "POST"
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("planOutput").innerText = data.plan;
+    });
+}
+</script>
+
+{% endblock %}

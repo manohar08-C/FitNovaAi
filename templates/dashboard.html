@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main-layout">
+
+<div class="sidebar">
+    <h2 class="logo">FitNovaAI </h2>
+
+    <a href="/dashboard" class="menu-btn {% if request.path == '/dashboard' %}active{% endif %}">Dashboard</a>
+    <a href="/profile" class="menu-btn ">Profile</a>
+    <a href="/ai_workout" class="menu-btn ">AI Workout</a>
+    <a href="/nutrition" class="menu-btn ">Nutrition</a>
+    <a href="/ai_food" class="menu-btn ">AI Food Detection</a>
+    <a href="/ai_coach" class="menu-btn ">AI Coach</a>
+    <a href="/ai_planner" class="menu-btn ">AI Planner</a>
+    <a href="/logout" class="menu-btn logout">Logout</a>
+    <button onclick="toggleTheme()" class="theme-btn">🌗 Toggle Theme</button>
+</div>
+
+    <div class="content">
+
+        <div class="header">
+            <h1>Welcome back, {{ user.name }} 👋</h1>
+            <p>Let’s crush today’s fitness goals!</p>
+        </div>
+
+        <div class="stats">
+            <div class="card">
+                <h3>BMI</h3>
+                <p>{{ bmi }}</p>
+            </div>
+            <div class="card">
+                <h3>Total Calories</h3>
+                <p>{{ total_calories }} kcal</p>
+            </div>
+            <div class="card">
+                <h3>Height</h3>
+                <p>{{ profile.height }} cm</p>
+            </div>
+            <div class="card">
+                <h3>Weight</h3>
+                <p>{{ profile.weight }} kg</p>
+            </div>
+            <div class="card">
+                <h3>Food Calories</h3>
+                <p>{{ food_calories }} kcal</p>
+            </div>
+
+            <div class="card">
+                <h3>Goal</h3>
+                <p>Workout Burn: {{ workout_calories }} kcal</p>
+                <p>Goal: {{ user_goal }}</p>
+            </div>
+
+        </div>
+        <br> <br>
+        <div class="card">
+            <h3>🔥 Streak</h3>
+            <p>{{ current_streak }} Days</p>
+        </div>
+
+        <div class="goal-progress">
+            <h2>Daily Goal Progress 🎯</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ progress_percentage }}%;">
+                    {{ progress_percentage|round(1) }}%
+                </div>
+            </div>
+            <p>{{ total_calories }} / {{ goal }} kcal</p>
+        </div>
+
+        <div class="chart-section">
+            <h2>Progress Overview 📈</h2>
+            <canvas id="calorieChart"></canvas>
+        </div>
+
+        <div class="workout-section">
+            <h2>Log New Workout 🏋</h2>
+            <form method="POST" action="/add_workout">
+                <input type="text" name="exercise" placeholder="Exercise Name" required>
+                <input type="number" name="sets" placeholder="Sets" required>
+                <input type="number" name="reps" placeholder="Reps per Set" required>
+                <button type="submit">Add Workout</button>
+            </form>
+        </div>
+
+        <div class="history-section">
+            <h2>Workout History 📊</h2>
+
+            {% if workout_history %}
+                {% for day, items in workout_history.items() %}
+                    <div class="workout-day-card">
+
+                        <div class="workout-day-header">
+                            <h3>{{ day }}</h3>
+
+                            <div class="day-buttons">
+                                <a href="/download_day/{{ day }}" class="btn small blue">Download</a>
+                                <a href="/delete_day/{{ day }}" class="btn small red">Delete</a>
+                            </div>
+                        </div>
+
+                        <div class="workout-list">
+                            {% for w in items %}
+                                <div class="workout-entry">
+                                    <div class="workout-info">
+                                        <strong>{{ w.exercise_name }}</strong>
+                                        <span>{{ w.sets }} sets × {{ w.reps }} reps</span>
+                                        <span>{{ w.calories_burned }} kcal</span>
+                                    </div>
+
+                                    <div class="workout-actions">
+                                        <a href="/delete_workout/{{ w.id }}" class="btn xsmall red">Delete</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No workouts yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const chartData = {{ chart_data|default([])|tojson }};
+    const labels = chartData.map(item => item.date);
+    const data = chartData.map(item => item.daily_calories);
+    const ctx = document.getElementById('calorieChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Daily Calories Burned',
+                data: data,
+                borderColor: '#00c6ff',
+                backgroundColor: 'rgba(0,198,255,0.2)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: { color: 'white' }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: 'white' }
+                },
+                y: {
+                    ticks: { color: 'white' }
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}
+
+

@@ -1,0 +1,706 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background */
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+}
+
+/* Glass Card */
+.container {
+    width: 400px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+    /* animation: fadeIn 0.8s ease-in-out; */
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Heading */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,114,255,0.6);
+}
+
+/* Links */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #00c6ff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+.back-home {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-home a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-home a:hover {
+    text-decoration: underline;
+}
+
+
+/* Alerts */
+.alert {
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.success {
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
+.danger {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+/* Dashboard Styling */
+.dashboard {
+    width: 800px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.dashboard h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.stats {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.card {
+    padding: 20px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+.history {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+
+/* Flash Message Styling */
+#flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.flash-message {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    animation: slideIn 0.5s ease;
+}
+
+.flash-message.success {
+    background: linear-gradient(90deg, #00c851, #007e33);
+}
+
+.flash-message.danger {
+    background: linear-gradient(90deg, #ff4444, #cc0000);
+}
+
+/* Slide Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+/* Layout */
+.main-layout {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
+
+
+
+.sidebar {
+    width: 230px;
+    background: linear-gradient(180deg, #0e1320, #0f1828);
+    padding: 25px 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 26px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+}
+
+.menu-btn {
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.menu-btn:hover {
+    background: rgba(0, 127, 255, 0.25);
+    border-color: rgba(0, 127, 255, 0.6);
+    transform: translateX(5px);
+}
+
+.menu-btn.logout {
+    background: rgba(255, 0, 0, 0.15);
+}
+
+.menu-btn.logout:hover {
+    background: rgba(255, 40, 40, 0.3);
+    border-color: rgba(255, 40, 40, 0.6);
+}
+
+.theme-btn {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #00b7ff, #005dff);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.theme-btn:hover {
+    opacity: 0.85;
+    transform: scale(1.03);
+}
+
+
+.content {
+    flex: 1;
+    padding: 30px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    overflow-y: auto;
+}
+
+.header {
+    margin-bottom: 25px;
+}
+
+.workout-section, .history-section {
+    margin-top: 30px;
+}
+
+.chart-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 15px;
+    max-height: 350px;
+}
+
+#calorieChart {
+    max-height: 250px !important;
+}
+
+
+.light-mode {
+    background: #f4f6f9;
+    color: #111;
+}
+
+.light-mode .content,
+.light-mode .sidebar,
+.light-mode .chart-section {
+    background: white;
+    color: black;
+}
+
+
+.goal-progress {
+    margin-top: 30px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 25px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    text-align: center;
+    line-height: 25px;
+    font-size: 12px;
+    color: white;
+    transition: width 0.6s ease;
+}
+
+/* Nutrition Specific Enhancements */
+
+.content h1 {
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.content p {
+    opacity: 0.8;
+}
+
+/* Improve Meal History Cards */
+.history-section .card {
+    margin-top: 15px;
+    padding: 18px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.history-section .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Improve Meal Form */
+.workout-section form input {
+    margin-bottom: 12px;
+}
+
+/* Make Doughnut Chart Smaller */
+#macroChart {
+    max-height: 280px !important;
+}
+
+
+.result-card {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.result-card img {
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.macro-box {
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
+
+.macro-box p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+
+/* profile page */
+.profile-container {
+    margin: 30px auto;
+    max-width: 900px;
+    background: rgba(255,255,255,0.04);
+    padding: 40px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+}
+
+.profile-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.profile-input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 22px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
+    font-size: 15px;
+}
+
+
+.profile-input:focus {
+    border-color: #0099ff;
+    outline: none;
+    background: rgba(255,255,255,0.12);
+}
+
+.profile-row {
+    display: flex;
+    gap: 20px;
+}
+
+.profile-col {
+    flex: 1;
+}
+
+select, option {
+    background: rgba(255,255,255,0.04);
+    color: #000000;
+}
+
+.save-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, #00c6ff, #006aff);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.cal-info {
+    font-size: 16px;
+    color: #bfe0ff;
+    margin: 15px 0;
+}
+
+
+.meal-title {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.meal-day {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #bfe0ff;
+}
+
+.meal-entry {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 12px 18px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #e6f3ff;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.meal-entry span {
+    margin-right: 8px;
+}
+
+
+
+   /* Workout History (Clean UI) */
+
+.workout-day-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.workout-day-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+.workout-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.workout-list {
+    margin-top: 15px;
+}
+
+.workout-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    transition: 0.25s ease;
+}
+
+.workout-entry:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.workout-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.workout-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: 0.25s ease;
+}
+
+.btn.small {
+    padding: 6px 14px;
+    font-size: 14px;
+}
+
+.btn.xsmall {
+    padding: 5px 12px;
+    font-size: 12px;
+}
+
+.btn.blue {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+}
+
+.btn.red {
+    background: linear-gradient(45deg, #ff4444, #cc0000);
+}
+
+.btn.yellow {
+    background: linear-gradient(45deg, #ffdd57, #f6b93b);
+    color: black;
+}
+
+.btn:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+
+/* edit workout */
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(4px);
+    background: rgba(0,0,0,0.55);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Box */
+.modal-content {
+    background: rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: 15px;
+    width: 350px;
+    animation: fadeIn 0.35s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.btn.full {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+
+/* ACTIVE SIDEBAR BUTTON */
+.menu-btn.active {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    border-color: #00c6ff;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.6);
+    transform: scale(1.05);
+}
+
+/* Optional smooth glow animation */
+.menu-btn.active {
+    animation: glowPulse 1.5s infinite alternate;
+}
+
+@keyframes glowPulse {
+    from {
+        box-shadow: 0 0 10px rgba(0, 198, 255, 0.4);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(0, 198, 255, 0.9);
+    }
+}
+

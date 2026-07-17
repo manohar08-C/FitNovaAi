@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="main-layout">
+
+<div class="sidebar">
+    <h2 class="logo">FitNovaAI </h2>
+
+    <a href="/dashboard" class="menu-btn">Dashboard</a>
+    <a href="/profile" class="menu-btn">Profile</a>
+    <a href="/ai_workout" class="menu-btn">AI Workout</a>
+    <a href="/nutrition" class="menu-btn {% if request.path == '/nutrition' %}active{% endif %}">Nutrition</a>
+    <a href="/ai_food" class="menu-btn">AI Food Detection</a>
+    <a href="/ai_coach" class="menu-btn">AI Coach</a>
+    <a href="/ai_planner" class="menu-btn">AI Planner</a>
+    <a href="/logout" class="menu-btn logout">Logout</a>
+
+    <button onclick="toggleTheme()" class="theme-btn">🌗 Toggle Theme</button>
+</div>
+
+    <div class="content">
+
+        <div class="header">
+            <h1>Nutrition Tracker 🍎</h1>
+            <p>Track your daily intake and macros</p>
+        </div>
+
+        <div class="stats" style="margin-bottom:30px;">
+            <div class="card">
+                <h3>Total Calories</h3>
+                <p>{{total_calories or 0 }} kcal</p>
+            </div>
+            <div class="card">
+                <h3>Protein</h3>
+                <p>{{total_protein or 0 }} g</p>
+            </div>
+            <div class="card">
+                <h3>Carbs</h3>
+                <p>{{total_carbs or 0 }} g</p>
+            </div>
+            <div class="card">
+                <h3>Fats</h3>
+                <p>{{total_fats or 0 }} g</p>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h2>Macro Distribution 📊</h2>
+            <canvas id="macroChart"></canvas>
+        </div>
+        
+         <br>
+
+        <div class="workout-section">
+            <h2>Add Meal 🥗</h2>
+            <form method="POST" action="/add_meal">
+                <input type="text" name="meal" placeholder="Meal Name" required>
+                <input type="number" name="calories" placeholder="Calories" required>
+                <input type="number" name="protein" placeholder="Protein (g)" required>
+                <input type="number" name="carbs" placeholder="Carbs (g)" required>
+                <input type="number" name="fats" placeholder="Fats (g)" required>
+                <button type="submit">Add Meal</button>
+            </form>
+        </div>
+        
+<!-- Meal History Title -->
+    <h2 class="meal-title">Meal History 🧾</h2>
+
+    {% for day, meals in meal_history.items() %}
+    <div class="meal-day">📅 <strong>{{ day }}</strong></div>
+
+    {% for meal in meals %}
+        <div class="meal-entry">
+        <span class="meal-name">{{ meal.meal_name }}</span> —
+        <span class="meal-cal">{{ meal.calories }} kcal</span> —
+        <span class="meal-macros">P:{{ meal.protein }}g | C:{{ meal.carbs }}g | F:{{ meal.fats }}g</span> —
+        <span class="meal-time">{{ meal.meal_time }}</span>
+        </div>
+    {% endfor %}
+    {% endfor %}
+
+
+<script>
+  const ctx = document.getElementById('macroChart').getContext('2d');
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Protein', 'Carbs', 'Fats'],
+      datasets: [{
+        data: [
+          {{ total_protein or 0 }},
+          {{ total_carbs or 0 }},
+          {{ total_fats or 0 }}
+        ],
+        backgroundColor: ['#00c6ff', '#28a745', '#ff4444']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white',
+            font: { size: 14 }
+          }
+        }
+      }
+    }
+  });
+</script>
+
+
+{% endblock %}

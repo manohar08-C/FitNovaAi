@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitNovaAI - Intelligent Fitness Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">FitNovaAI</div>
+    <div class="nav-links">
+        <a href="/login">Login</a>
+        <a href="/register" class="btn-primary">Get Started</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1 class="gradient-text">Train Smarter with AI</h1>
+        <p>
+            AI-powered workout detection, nutrition tracking, and intelligent fitness coaching —
+            all in one powerful platform.
+        </p>
+        <a href="/register" class="btn-primary">Start Your Fitness Journey</a>
+    </div>
+
+    <div class="hero-animation">
+        <div class="glow-circle"></div>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Why Choose FitNovaAI?</h2>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>🤖 AI Workout Detection</h3>
+            <p>Real-time pose tracking with form correction and rep counting.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🍎 AI Food Detection</h3>
+            <p>Upload food images and automatically calculate calories using YOLO.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🧠 AI Coach</h3>
+            <p>Personalized fitness advice powered by local AI intelligence.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📊 Smart Progress Tracking</h3>
+            <p>Track calories burned, streaks, and daily goal achievements.</p>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <h2>How FitNovaAI Works</h2>
+
+    <div class="steps">
+        <div class="step">
+            <span>1</span>
+            <h3>Create Account</h3>
+            <p>Sign up and set your fitness profile.</p>
+        </div>
+
+        <div class="step">
+            <span>2</span>
+            <h3>Train with AI</h3>
+            <p>Real-time pose detection with form correction.</p>
+        </div>
+
+        <div class="step">
+            <span>3</span>
+            <h3>Track & Improve</h3>
+            <p>Monitor calories, streaks, and goal progress.</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="preview">
+    <h2>Inside the Platform</h2>
+    <p>Powerful dashboard. Smart analytics. AI-driven insights.</p>
+
+    <div class="preview-box">
+        <img src="{{ url_for('static', filename='preview.png') }}" alt="App Preview">
+    </div>
+</section>
+
+
+<section class="testimonials">
+    <h2>What Users Say</h2>
+
+    <div class="testimonial-grid">
+        <div class="testimonial">
+            <p>"The AI workout detection is incredibly accurate!"</p>
+            <h4>— Fitness Enthusiast</h4>
+        </div>
+
+        <div class="testimonial">
+            <p>"I love the AI coach. It feels personalized."</p>
+            <h4>— College Athlete</h4>
+        </div>
+    </div>
+</section>
+
+
+<section class="cta">
+    <h2>Ready to Transform Your Fitness?</h2>
+    <a href="/register" class="btn-primary">Join FitNovaAI Today</a>
+</section>
+
+<footer>
+    <p>© 2026 FitNovaAI | AI-Powered Intelligent Fitness Platform</p>
+</footer>
+
+
+
+<script>
+const cards = document.querySelectorAll(".feature-card");
+
+window.addEventListener("scroll", () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+
+        if (cardTop < triggerBottom) {
+            card.style.opacity = 1;
+            card.style.transform = "translateY(0)";
+        }
+    });
+});
+</script>
+
+
+
+<script>
+window.addEventListener("scroll", function() {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+        navbar.style.boxShadow = "0 5px 20px rgba(0,0,0,0.3)";
+    } else {
+        navbar.style.boxShadow = "none";
+    }
+});
+</script>
+
+
+</body>
+</html>

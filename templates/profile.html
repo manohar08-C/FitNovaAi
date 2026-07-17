@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="main-layout">
+
+<div class="sidebar">
+    <h2 class="logo">FitNovaAI</h2>
+
+    <a href="/dashboard" class="menu-btn">Dashboard</a>
+    <a href="/profile" class="menu-btn {% if request.path == '/profile' %}active{% endif %}">Profile</a>
+    <a href="/ai_workout" class="menu-btn">AI Workout</a>
+    <a href="/nutrition" class="menu-btn">Nutrition</a>
+    <a href="/ai_food" class="menu-btn">AI Food Detection</a>
+    <a href="/ai_coach" class="menu-btn">AI Coach</a>
+    <a href="/ai_planner" class="menu-btn">AI Planner</a>
+    <a href="/logout" class="menu-btn logout">Logout</a>
+
+    <button onclick="toggleTheme()" class="theme-btn">🌗 Toggle Theme</button>
+</div>
+
+
+<div class="profile-container">
+    <h2 class="profile-title">Your Fitness Profile</h2>
+
+    <form method="POST">
+
+        <label>Age</label>
+        <input type="number" name="age" class="profile-input" value="{{ profile.age }}" required>
+
+        <label>Height (cm)</label>
+        <input type="number" name="height" class="profile-input" value="{{ profile.height }}" required>
+
+        <label>Weight (kg)</label>
+        <input type="number" name="weight" class="profile-input" value="{{ profile.weight }}" required>
+
+        <div class="profile-row">
+            <div class="profile-col">
+                <label>Fitness Goal</label>
+                <select name="goal" class="profile-input">
+                    <option value="fat_loss" {{ 'selected' if profile.goal=='fat_loss' else '' }}>Fat Loss</option>
+                    <option value="muscle_gain" {{ 'selected' if profile.goal=='muscle_gain' else '' }}>Muscle Gain</option>
+                    <option value="maintenance" {{ 'selected' if profile.goal=='maintenance' else '' }}>Maintenance</option>
+                </select>
+            </div>
+
+            <div class="profile-col">
+                <label>Fitness Level</label>
+                <select name="level" class="profile-input">
+                    <option value="beginner" {{ 'selected' if profile.level=='beginner' else '' }}>Beginner</option>
+                    <option value="intermediate" {{ 'selected' if profile.level=='intermediate' else '' }}>Intermediate</option>
+                    <option value="advanced" {{ 'selected' if profile.level=='advanced' else '' }}>Advanced</option>
+                </select>
+            </div>
+        </div>
+
+        <p class="cal-info">Estimated Daily Calories: <strong>{{ profile.daily_calorie_target }} kcal</strong></p>
+
+        
+        <button type="submit" class="save-btn">Save Profile</button>
+
+    </form>
+</div>
+
+</div>
+
+{% endblock %}

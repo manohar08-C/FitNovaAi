@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="main-layout">
+
+<div class="sidebar">
+    <h2 class="logo">FitNovaAI</h2>
+
+    <a href="/dashboard" class="menu-btn">Dashboard</a>
+    <a href="/profile" class="menu-btn">Profile</a>
+    <a href="/ai_workout" class="menu-btn {% if request.path == '/ai_workout' %}active{% endif %}">AI Workout</a>
+    <a href="/nutrition" class="menu-btn">Nutrition</a>
+    <a href="/ai_food" class="menu-btn">AI Food Detection</a>
+    <a href="/ai_coach" class="menu-btn">AI Coach</a>
+    <a href="/ai_planner" class="menu-btn">AI Planner</a>
+    <a href="/logout" class="menu-btn logout">Logout</a>
+
+    <button onclick="toggleTheme()" class="theme-btn">🌗 Toggle Theme</button>
+</div>
+
+
+<div class="content">
+
+    <h1>AI Workout Trainer 🤖</h1>
+
+    <div class="chart-section">
+
+        <select id="exerciseSelect">
+            <option value="pushup">Push-Ups</option>
+            <option value="squat">Squats</option>
+            <option value="bicep">Bicep Curl</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="startWorkout()">Start Workout</button>
+        <button onclick="stopWorkout()">Stop Workout</button>
+
+        <br><br>
+
+        <img src="{{ url_for('pose.video_feed') }}" width="640">
+
+    </div>
+</div>
+
+
+</div>
+
+{% endblock %}
