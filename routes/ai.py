@@ -18,7 +18,7 @@ import requests
 from databases.db import get_db_connection
 
 from ai_modules.gemini_service import generate_response
-from utils.predict_food import predict_food
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
